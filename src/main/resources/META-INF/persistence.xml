@@ -20,9 +20,9 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
       
             <!--ESQUEMA USADO NA HOMOLOGACAO/IMPLANTACAO-->
-            <property name="hibernate.default_schema" value="cadcaixa"/>
+            <!--<property name="hibernate.default_schema" value="cadcaixa"/>-->
       
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
      
         </properties>
     </persistence-unit>

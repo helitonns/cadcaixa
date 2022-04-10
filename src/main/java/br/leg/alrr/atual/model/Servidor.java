@@ -14,8 +14,8 @@ import javax.persistence.Table;
 /**
  * @author Heliton Nascimento
  */
-@Entity
-@Table(name = "ouvinte")
+//@Entity
+//@Table(name = "ouvinte")
 public class Servidor implements Serializable, BaseEntity, Comparable<Servidor> {
 
     private static final long serialVersionUID = 1L;

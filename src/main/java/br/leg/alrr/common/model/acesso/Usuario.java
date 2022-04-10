@@ -19,8 +19,8 @@ import javax.persistence.Table;
  * @since 2019-12-05
  * @version 1.0
  */
-@Entity
-@Table(name = "usuario")
+//@Entity
+//@Table(name = "usuario")
 public class Usuario implements Serializable, Comparable<Usuario> {
 
     private static final long serialVersionUID = 1L;
