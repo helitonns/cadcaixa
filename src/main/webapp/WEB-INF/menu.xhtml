@@ -1,0 +1,32 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:sm="http://primefaces.org/sapphire">
+
+    <div id="layout-menu-container" class="layout-menu-container">
+                <div class="layout-menu-wrapper">
+                    <h:form id="menuform">
+                        <sm:menu widgetVar="sapphireMenuWidget">
+
+                            <p:menuitem id="menu_home" value="Home" icon="pi pi-fw pi-home" outcome="/pages/user/home" rendered="#{startMB.ouvinte}" />
+                            
+                            <p:menuitem id="menu_cad_ouvinte" value="Cadastro de ouvinte" style="color: #085025 !important" icon="pi pi-fw pi-user-plus" outcome="/pages/user/cadastro-ouvinte" rendered="#{!startMB.ouvinte}"/>
+                            
+                            <p:submenu id="sub_menu_usuario" label="Configurações gerais" icon="pi pi-fw pi-cog" rendered="#{startMB.admin || startMB.superAdmin}">
+                                <p:menuitem id="menu_usuario" value="Usuários" icon="pi pi-fw pi-users" outcome="/pages/admin/usuario" />
+                                <p:menuitem id="menu_usuario_s" value="Super Usuários" icon="pi pi-fw pi-users" outcome="/pages/superadmin/superusuario" rendered="#{startMB.superAdmin}"/>
+                                <p:menuitem id="menu_video" value="Vídeo" icon="pi pi-fw pi-desktop" outcome="/pages/superadmin/video" rendered="#{startMB.superAdmin}"/>                                
+                                <p:menuitem id="menu_entidade" value="Entidade" icon="pi pi-fw pi-home" outcome="/pages/superadmin/entidade" rendered="false"/>                                
+                                <p:menuitem id="menu_evento" value="Evento" icon="pi pi-fw pi-tag" outcome="/pages/superadmin/evento" rendered="#{startMB.superAdmin}"/>                                
+                            </p:submenu>
+
+                            <p:menuitem id="menu_relatorio" value="Relatório" icon="pi pi-fw pi-file-o" outcome="/pages/user/relatorio" rendered="#{!startMB.ouvinte}"/>
+                        </sm:menu>
+                    </h:form>
+                </div>
+            </div>
+
+</ui:composition>
