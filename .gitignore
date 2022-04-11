@@ -1,1 +1,9 @@
 /target/
+/.settingd/
+.classpath
+.DS_Store
+.project
+.tern-project
+faces-config.NavData
+nbactions.xml
+nb-configuration.xml
