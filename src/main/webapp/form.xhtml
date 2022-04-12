@@ -115,7 +115,7 @@
                                 <div class="p-col-12 p-md-6">
                                     <span class="ui-float-label">
                                         <p:selectOneMenu id="idJPF" value="#{indexMB.servidor.temFilhos}" required="true" requiredMessage="Campo obrigatório!">
-                                            <f:selectItem itemLabel="" itemValue="" noSelectionOption="true"/>
+                                            <f:selectItem itemLabel="" itemValue="#{null}" noSelectionOption="true"/>
                                             <f:selectItem itemLabel="SIM" itemValue="#{true}"/>
                                             <f:selectItem itemLabel="NÃO" itemValue="#{false}"/>
                                         </p:selectOneMenu>
@@ -148,7 +148,7 @@
                                 <div class="p-col-12 p-md-4">
                                     <span class="ui-float-label">
                                         <p:selectOneMenu id="idVE" value="#{indexMB.servidor.possuiValorDaEntrada}" required="true" requiredMessage="Campo obrigatório!">
-                                            <f:selectItem itemLabel="" itemValue="" noSelectionOption="true"/>
+                                            <f:selectItem itemLabel="" itemValue="#{null}" noSelectionOption="true"/>
                                             <f:selectItem itemLabel="SIM" itemValue="#{true}"/>
                                             <f:selectItem itemLabel="NÃO" itemValue="#{false}"/>
                                         </p:selectOneMenu>
@@ -162,8 +162,7 @@
                                 </div>
                                 <div class="p-col-12" style="margin-bottom: 32px">
                                     <h:panelGrid columns="2">
-                                        <p>Autorizo a Caixa Econômica Federal a coletar, armazenar e compatilhar meus dados pessoais com sua rede parceira, bem como contato telefônico.</p>
-                                        <p:selectBooleanCheckbox id="idAutorizacao" value="#{indexMB.servidor.autorizacaoDeUso}" validator="requiredCheckboxValidator" validatorMessage="Campo obrigatório!"/>
+                                        <p:selectBooleanCheckbox itemLabel="Autorizo a Caixa Econômica Federal a coletar, armazenar e compatilhar meus dados pessoais com sua rede parceira, bem como contato telefônico." id="idAutorizacao" value="#{indexMB.servidor.autorizacaoDeUso}" validator="requiredCheckboxValidator" validatorMessage="Campo obrigatório!"/>
                                     </h:panelGrid>
                                 </div>
                                 
