@@ -28,12 +28,16 @@ import javax.enterprise.context.SessionScoped;
 public class GuestPreferences implements Serializable {
 
     private String layout = "indigo";
+//    private String layout = "harvey";
 
-    private String theme = "indigo";
+//    private String theme = "indigo";
+    private String theme = "bluegray";
 
-    private String menuTheme = "night";
+    private String menuTheme = "harvey";
+//    private String menuTheme = "night";
 
-    private String topBar = "night";
+//    private String topBar = "night";
+    private String topBar = "harvey";
     
     private String topBarSize = "large";
 

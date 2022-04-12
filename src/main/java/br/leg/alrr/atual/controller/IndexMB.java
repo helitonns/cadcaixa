@@ -92,6 +92,9 @@ public class IndexMB implements Serializable {
     //==========================================================================
     private void iniciar() {
         servidor = new Servidor();
+        servidor.setJaPossuiCasa(null);
+        servidor.setPossuiValorDaEntrada(null);
+        servidor.setTemFilhos(null);
         mensagem = new Mensagem();
     }
 

@@ -33,9 +33,10 @@ public class Servidor implements Serializable, BaseEntity, Comparable<Servidor> 
     
     private Float rendaBrutaFamiliar;
     private Float valorPretendido;
-    private boolean possuiValorDaEntrada;
-    private boolean jaPossuiCasa;
-    private boolean temFilhos;
+    private Boolean possuiValorDaEntrada;
+    private Boolean jaPossuiCasa;
+    private Boolean temFilhos;
+    private Boolean autorizacaoDeUso;
     
     //========================================================================//
     public Servidor() {
@@ -117,30 +118,37 @@ public class Servidor implements Serializable, BaseEntity, Comparable<Servidor> 
         this.valorPretendido = valorPretendido;
     }
 
-    public boolean isPossuiValorDaEntrada() {
+    public Boolean getPossuiValorDaEntrada() {
         return possuiValorDaEntrada;
     }
 
-    public void setPossuiValorDaEntrada(boolean possuiValorDaEntrada) {
+    public void setPossuiValorDaEntrada(Boolean possuiValorDaEntrada) {
         this.possuiValorDaEntrada = possuiValorDaEntrada;
     }
 
-    public boolean isJaPossuiCasa() {
+    public Boolean getJaPossuiCasa() {
         return jaPossuiCasa;
     }
 
-    public void setJaPossuiCasa(boolean jaPossuiCasa) {
+    public void setJaPossuiCasa(Boolean jaPossuiCasa) {
         this.jaPossuiCasa = jaPossuiCasa;
     }
 
-    public boolean isTemFilhos() {
+    public Boolean getTemFilhos() {
         return temFilhos;
     }
 
-    public void setTemFilhos(boolean temFilhos) {
+    public void setTemFilhos(Boolean temFilhos) {
         this.temFilhos = temFilhos;
     }
 
+    public Boolean getAutorizacaoDeUso() {
+        return autorizacaoDeUso;
+    }
+
+    public void setAutorizacaoDeUso(Boolean autorizacaoDeUso) {
+        this.autorizacaoDeUso = autorizacaoDeUso;
+    }
 
     @Override
     public int compareTo(Servidor o) {

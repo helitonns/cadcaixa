@@ -71,7 +71,7 @@
                                 <div class="p-col-12 p-md-4">
                                     <p:message for="idEmail" showSummary="true" showDetail="false" style="width: 100%"/>
                                 </div>
-                                
+
                                 <div class="p-col-12 p-md-4">
                                     <span class="ui-float-label">
                                         <p:inputMask id="idDN" value="#{indexMB.servidor.dataNascimento}" mask="99/99/9999" required="true" requiredMessage="Campo obrigatório!">
@@ -90,22 +90,22 @@
 
                                 <div class="p-col-12 p-md-4">
                                     <span class="ui-float-label">
-                                        <p:inputText id="idEmail" value="#{indexMB.servidor.email}" validatorMessage="O e-mail digitado não está dentro do padrão!" required="true" requiredMessage="Campo obrigatório!">
+                                        <p:inputText id="idEmail" value="#{indexMB.servidor.email}" validatorMessage="O e-mail digitado não está dentro do padrão!">
                                             <f:validateRegex pattern="(^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$)|()" />
                                         </p:inputText> 
                                         <p:outputLabel  value="E-mail: (não deixe espaço em branco no final)" />
                                     </span>
                                 </div>
-                                <div class="p-col-12 p-md-4">
+                                <div class="p-col-12 p-md-6">
                                     <p:message for="idJPC" showSummary="true" showDetail="false" style="width: 100%"/>
                                 </div>
-                                <div class="p-col-12 p-md-4">
+                                <div class="p-col-12 p-md-6">
                                     <p:message for="idJPF" showSummary="true" showDetail="false" style="width: 100%"/>
                                 </div>
                                 <div class="p-col-12 p-md-6">
                                     <span class="ui-float-label">
-                                        <p:selectOneMenu id="idJPC" value="#{indexMB.servidor.jaPossuiCasa}">
-                                            <f:selectItem itemLabel="" itemValue="" noSelectionOption="true"/>
+                                        <p:selectOneMenu id="idJPC" value="#{indexMB.servidor.jaPossuiCasa}" required="true" requiredMessage="Campo obrigatório!">
+                                            <f:selectItem itemLabel="" itemValue="#{null}" noSelectionOption="true"/>
                                             <f:selectItem itemLabel="SIM" itemValue="#{true}"/>
                                             <f:selectItem itemLabel="NÃO" itemValue="#{false}"/>
                                         </p:selectOneMenu>
@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="p-col-12 p-md-6">
                                     <span class="ui-float-label">
-                                        <p:selectOneMenu id="idJPF" value="#{indexMB.servidor.temFilhos}">
+                                        <p:selectOneMenu id="idJPF" value="#{indexMB.servidor.temFilhos}" required="true" requiredMessage="Campo obrigatório!">
                                             <f:selectItem itemLabel="" itemValue="" noSelectionOption="true"/>
                                             <f:selectItem itemLabel="SIM" itemValue="#{true}"/>
                                             <f:selectItem itemLabel="NÃO" itemValue="#{false}"/>
@@ -122,7 +122,7 @@
                                         <p:outputLabel  value="Tem filhos?" />
                                     </span>
                                 </div>
-                                
+
                                 <div class="p-col-12 p-md-4">
                                     <p:message for="idRBF" showSummary="true" showDetail="false" style="width: 100%"/>
                                 </div>
@@ -132,7 +132,7 @@
                                 <div class="p-col-12 p-md-4">
                                     <p:message for="idVE" showSummary="true" showDetail="false" style="width: 100%"/>
                                 </div>
-                                
+
                                 <div class="p-col-12 p-md-4">
                                     <span class="ui-float-label">
                                         <p:inputNumber id="idRBF" value="#{indexMB.servidor.rendaBrutaFamiliar}" symbol="R$ " decimalSeparator="," thousandSeparator="." decimalPlaces="2" required="true" requiredMessage="Campo obrigatório!"/>
@@ -147,7 +147,7 @@
                                 </div>
                                 <div class="p-col-12 p-md-4">
                                     <span class="ui-float-label">
-                                        <p:selectOneMenu id="idVE" value="#{indexMB.servidor.possuiValorDaEntrada}">
+                                        <p:selectOneMenu id="idVE" value="#{indexMB.servidor.possuiValorDaEntrada}" required="true" requiredMessage="Campo obrigatório!">
                                             <f:selectItem itemLabel="" itemValue="" noSelectionOption="true"/>
                                             <f:selectItem itemLabel="SIM" itemValue="#{true}"/>
                                             <f:selectItem itemLabel="NÃO" itemValue="#{false}"/>
@@ -155,23 +155,52 @@
                                         <p:outputLabel  value="Possui o valor da entrada?" />
                                     </span>
                                 </div>
+
+
+                                <div class="p-col-12">
+                                    <p:message for="idAutorizacao" showSummary="true" showDetail="false" style="width: 100%"/>
+                                </div>
+                                <div class="p-col-12" style="margin-bottom: 32px">
+                                    <h:panelGrid columns="2">
+                                        <p>Autorizo a Caixa Econômica Federal a coletar, armazenar e compatilhar meus dados pessoais com sua rede parceira, bem como contato telefônico.</p>
+                                        <p:selectBooleanCheckbox id="idAutorizacao" value="#{indexMB.servidor.autorizacaoDeUso}" validator="requiredCheckboxValidator" validatorMessage="Campo obrigatório!"/>
+                                    </h:panelGrid>
+                                </div>
+                                
+
+                                <div class="p-col-12 p-md-12 p-lg-6"/>
+                                <div class="p-col-12 p-md-6 p-lg-3">
+                                    <p:commandButton value="Imprimir formulário" action="#{indexMB.imprimirFormulario()}" ajax="false" icon="pi pi-fw pi-save" style="width: 100%"/>
+                                </div>
+                                <div class="p-col-12 p-md-6 p-lg-3">
+                                    <p:commandButton value="Cancelar" action="#{indexMB.cancelar()}" immediate="true" style="background-color: #F57F17; width: 100%" icon="pi pi-fw pi-times" />
+                                </div>
+
                             </div>
                         </div>
 
+                        <!--                        <div class="card card-w-title">
+                                                    <div class="p-grid ui-fluid form-group">-->
+                        <!--                                <div class="p-col-12">
+                                                            <p>Autorizo a Caixa Econômica Federal a coletar, armazenar e compatilhar meus dados pessoais com sua rede parceira, bem como contato telefônico.</p>
+                        
+                                                        </div>-->
+                        <!--                            </div>
+                                                </div>-->
                         <!-- OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO000000000000O00000000000000000OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO-->
-                        <h:panelGroup>
-                            <div class="card card-w-title">
-                                <div class="p-grid ui-fluid form-group">
-                                    <div class="p-col-12 p-md-12 p-lg-6"/>
-                                    <div class="p-col-12 p-md-6 p-lg-3">
-                                        <p:commandButton value="Imprimir formulário" action="#{indexMB.imprimirFormulario()}" ajax="false" icon="pi pi-fw pi-save" style="width: 100%"/>
-                                    </div>
-                                    <div class="p-col-12 p-md-6 p-lg-3">
-                                        <p:commandButton value="Cancelar" action="#{indexMB.cancelar()}" immediate="true" style="background-color: #F57F17; width: 100%" icon="pi pi-fw pi-times" />
-                                    </div>
-                                </div>
-                            </div>
-                        </h:panelGroup>
+                        <!--                        <h:panelGroup>
+                                                    <div class="card card-w-title">
+                                                        <div class="p-grid ui-fluid form-group">-->
+                        <!--                                    <div class="p-col-12 p-md-12 p-lg-6"/>
+                                                            <div class="p-col-12 p-md-6 p-lg-3">
+                                                                <p:commandButton value="Imprimir formulário" action="#{indexMB.imprimirFormulario()}" ajax="false" icon="pi pi-fw pi-save" style="width: 100%"/>
+                                                            </div>
+                                                            <div class="p-col-12 p-md-6 p-lg-3">
+                                                                <p:commandButton value="Cancelar" action="#{indexMB.cancelar()}" immediate="true" style="background-color: #F57F17; width: 100%" icon="pi pi-fw pi-times" />
+                                                            </div>-->
+                        <!--                                </div>
+                                                    </div>
+                                                </h:panelGroup>-->
                     </div>
                 </div>
             </div>
