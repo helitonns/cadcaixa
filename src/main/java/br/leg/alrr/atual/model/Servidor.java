@@ -18,173 +18,180 @@ import javax.persistence.Table;
 //@Table(name = "ouvinte")
 public class Servidor implements Serializable, BaseEntity, Comparable<Servidor> {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String nome;
-    private String cpf;
-    private LocalDate dataNascimento;
-    private String telefone;
-    private String email;
-    private String estadoCivil;
-    
-    private Float rendaBrutaFamiliar;
-    private Float valorPretendido;
-    private Boolean possuiValorDaEntrada;
-    private Boolean jaPossuiCasa;
-    private Boolean temFilhos;
-    private Boolean autorizacaoDeUso;
-    
-    //========================================================================//
-    public Servidor() {
-    }
+	private String nome;
+	private String cpf;
+	private LocalDate dataNascimento;
+	private String telefone;
+	private String email;
+	private String estadoCivil;
 
-    public Servidor(Long id) {
-        this.id = id;
-    }
+	private Float rendaBrutaFamiliar;
+	private Float valorPretendido;
+	private String possuiValorDaEntrada;
+	private String jaPossuiCasa;
+	private String temFilhos;
+	private Boolean autorizacaoDeUso;
 
-    public Long getId() {
-        return id;
-    }
+	// ========================================================================//
+	public Servidor() {
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Servidor(Long id) {
+		this.id = id;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getCpf() {
-        return cpf;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
+	public String getCpf() {
+		return cpf;
+	}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getTelefone() {
+		return telefone;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getEstadoCivil() {
-        return estadoCivil;
-    }
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
 
-    public void setEstadoCivil(String estadoCivil) {
-        this.estadoCivil = estadoCivil;
-    }
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
 
-    public Float getRendaBrutaFamiliar() {
-        return rendaBrutaFamiliar;
-    }
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
 
-    public void setRendaBrutaFamiliar(Float rendaBrutaFamiliar) {
-        this.rendaBrutaFamiliar = rendaBrutaFamiliar;
-    }
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
 
-    public Float getValorPretendido() {
-        return valorPretendido;
-    }
+	public Float getRendaBrutaFamiliar() {
+		return rendaBrutaFamiliar;
+	}
 
-    public void setValorPretendido(Float valorPretendido) {
-        this.valorPretendido = valorPretendido;
-    }
+	public void setRendaBrutaFamiliar(Float rendaBrutaFamiliar) {
+		this.rendaBrutaFamiliar = rendaBrutaFamiliar;
+	}
 
-    public Boolean getPossuiValorDaEntrada() {
-        return possuiValorDaEntrada;
-    }
+	public Float getValorPretendido() {
+		return valorPretendido;
+	}
 
-    public void setPossuiValorDaEntrada(Boolean possuiValorDaEntrada) {
-        this.possuiValorDaEntrada = possuiValorDaEntrada;
-    }
+	public void setValorPretendido(Float valorPretendido) {
+		this.valorPretendido = valorPretendido;
+	}
 
-    public Boolean getJaPossuiCasa() {
-        return jaPossuiCasa;
-    }
+	public Boolean getAutorizacaoDeUso() {
+		return autorizacaoDeUso;
+	}
 
-    public void setJaPossuiCasa(Boolean jaPossuiCasa) {
-        this.jaPossuiCasa = jaPossuiCasa;
-    }
+	public void setAutorizacaoDeUso(Boolean autorizacaoDeUso) {
+		this.autorizacaoDeUso = autorizacaoDeUso;
+	}
 
-    public Boolean getTemFilhos() {
-        return temFilhos;
-    }
+	public String getAutorizacao() {
+		getAutorizacaoDeUso();
+		if (autorizacaoDeUso) {
+			return "(x)";
+		} else
+			return "( )";
+	}
 
-    public void setTemFilhos(Boolean temFilhos) {
-        this.temFilhos = temFilhos;
-    }
+	public String getPossuiValorDaEntrada() {
+		return possuiValorDaEntrada;
+	}
 
-    public Boolean getAutorizacaoDeUso() {
-        return autorizacaoDeUso;
-    }
+	public void setPossuiValorDaEntrada(String possuiValorDaEntrada) {
+		this.possuiValorDaEntrada = possuiValorDaEntrada;
+	}
 
-    public void setAutorizacaoDeUso(Boolean autorizacaoDeUso) {
-        this.autorizacaoDeUso = autorizacaoDeUso;
-    }
+	public String getJaPossuiCasa() {
+		return jaPossuiCasa;
+	}
 
-    @Override
-    public int compareTo(Servidor o) {
-        if (this.id.equals(o.getId())) {
-            return 0;
-        } else if (this.id > o.getId()) {
-            return 1;
-        } else {
-            return -1;
-        }
-    }
+	public void setJaPossuiCasa(String jaPossuiCasa) {
+		this.jaPossuiCasa = jaPossuiCasa;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
+	public String getTemFilhos() {
+		return temFilhos;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Servidor other = (Servidor) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
-    }
+	public void setTemFilhos(String temFilhos) {
+		this.temFilhos = temFilhos;
+	}
 
-    
+	@Override
+	public int compareTo(Servidor o) {
+		if (this.id.equals(o.getId())) {
+			return 0;
+		} else if (this.id > o.getId()) {
+			return 1;
+		} else {
+			return -1;
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 7;
+		hash = 17 * hash + Objects.hashCode(this.id);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final Servidor other = (Servidor) obj;
+		if (!Objects.equals(this.id, other.id)) {
+			return false;
+		}
+		return true;
+	}
+
 }
