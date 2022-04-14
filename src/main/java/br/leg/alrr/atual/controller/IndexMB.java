@@ -15,6 +15,7 @@ import org.apache.commons.mail.EmailException;
 import br.leg.alrr.atual.model.Servidor;
 import br.leg.alrr.common.util.DAOException;
 import br.leg.alrr.common.util.EmailUtils;
+import br.leg.alrr.common.util.EmailWithPdf;
 import br.leg.alrr.common.util.FacesUtils;
 import br.leg.alrr.common.util.GeneratorPDF;
 import br.leg.alrr.common.util.Mensagem;
@@ -38,6 +39,7 @@ public class IndexMB implements Serializable {
 	private Servidor servidorNaSessao;
 	private Mensagem mensagem;
 	private GeneratorPDF gerarPdf;
+	private EmailWithPdf emailComPdf;
 
 	// ==========================================================================
 	@PostConstruct
@@ -61,8 +63,10 @@ public class IndexMB implements Serializable {
 
 			if (servidor != null) {
 				// FacesUtils.setBean("servidor", servidor);
-				gerarPdf = new GeneratorPDF();
-				gerarPdf.caixaPDF(servidor);
+				//gerarPdf = new GeneratorPDF();
+				//gerarPdf.caixaPDF(servidor);
+				emailComPdf = new EmailWithPdf();
+				emailComPdf.email(servidor);
 			}
 
 		} catch (Exception e) {
