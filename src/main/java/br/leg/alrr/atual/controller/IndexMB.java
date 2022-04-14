@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -25,7 +26,7 @@ import br.leg.alrr.common.util.Mensagem;
  * @author heliton
  */
 @Named
-@ViewScoped
+@SessionScoped
 public class IndexMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -45,7 +46,7 @@ public class IndexMB implements Serializable {
 	@PostConstruct
 	public void init() {
 		iniciar();
-
+		
 //		try {
 //			if (FacesUtils.getURL().contains("finalizacao")) {
 //				Servidor s = (Servidor) FacesUtils.getBean("servidor");
@@ -57,7 +58,7 @@ public class IndexMB implements Serializable {
 //		}
 	}
 
-	public void imprimirFormulario() {
+	public String finalizarFormulario() {
 		try {
 			// JOGANDO O OBJETO SERVIDOR NA SESSÃO
 
@@ -67,6 +68,7 @@ public class IndexMB implements Serializable {
 				//gerarPdf.caixaPDF(servidor);
 				emailComPdf = new EmailWithPdf();
 				emailComPdf.email(servidor);
+				
 			}
 
 		} catch (Exception e) {
@@ -74,8 +76,32 @@ public class IndexMB implements Serializable {
 			// FacesUtils.addErrorMessageFlashScoped("Houve um erro ao imprimir o
 			// formulário!");
 		}
+		return "finalizacao.xhtml" + "?faces-redirect=true";
 		
 	}
+	
+	public String imprimirFormulario() {
+		try {
+			// JOGANDO O OBJETO SERVIDOR NA SESSÃO
+
+			
+				//FacesUtils.setBean("servidor", servidor);
+				//System.out.println("teste" + servidor.getNome());
+				gerarPdf = new GeneratorPDF();
+				gerarPdf.caixaPDF(servidor);
+				
+				
+		
+
+		} catch (Exception e) {
+			// System.out.println("LOG: " + e.getCause().toString());
+			// FacesUtils.addErrorMessageFlashScoped("Houve um erro ao imprimir o
+			// formulário!");
+		}
+		return "finalizacao.xhtml" + "?faces-redirect=true";
+		
+	}
+	
 	
 	public String finalizar() {
 		return "finalizacao.xhtml" + "?faces-redirect=true";
@@ -98,10 +124,11 @@ public class IndexMB implements Serializable {
 
 	public String cancelar() {
 		try {
-			Servidor s = (Servidor) FacesUtils.getBean("servidor");
-			if (s != null) {
-				FacesUtils.removeBean("servidor");
-			}
+//			Servidor s = (Servidor) FacesUtils.getBean("servidor");
+//			if (s != null) {
+//				FacesUtils.removeBean("servidor");
+//			}
+			servidor = new Servidor();
 		} catch (Exception e) {
 			System.out.println("LOG: " + e.getCause().toString());
 		}

@@ -464,13 +464,6 @@ public class EmailWithPdf {
 			document.addAuthor("ALE-RR");
 
 			document.close();
-			
-			//response.reset();
-			//response.setCharacterEncoding("UTF-8");
-			response.setContentType("application/pdf");
-			//response.setContentLength(outputStream.size());
-			response.setHeader("Content-disposition", "inline; filename=solicitacao.pdf");
-			response.getOutputStream().write(((ByteArrayOutputStream) outputStream).toByteArray());
 
     	
 		} catch (DocumentException e) {
