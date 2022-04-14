@@ -31,8 +31,8 @@ public class Servidor implements Serializable, BaseEntity, Comparable<Servidor> 
 	private String email;
 	private String estadoCivil;
 
-	private Float rendaBrutaFamiliar;
-	private Float valorPretendido;
+	private String rendaBrutaFamiliar;
+	private String valorPretendido;
 	private String possuiValorDaEntrada;
 	private String jaPossuiCasa;
 	private String temFilhos;
@@ -102,19 +102,19 @@ public class Servidor implements Serializable, BaseEntity, Comparable<Servidor> 
 		this.estadoCivil = estadoCivil;
 	}
 
-	public Float getRendaBrutaFamiliar() {
+	public String getRendaBrutaFamiliar() {
 		return rendaBrutaFamiliar;
 	}
 
-	public void setRendaBrutaFamiliar(Float rendaBrutaFamiliar) {
+	public void setRendaBrutaFamiliar(String rendaBrutaFamiliar) {
 		this.rendaBrutaFamiliar = rendaBrutaFamiliar;
 	}
 
-	public Float getValorPretendido() {
+	public String getValorPretendido() {
 		return valorPretendido;
 	}
 
-	public void setValorPretendido(Float valorPretendido) {
+	public void setValorPretendido(String valorPretendido) {
 		this.valorPretendido = valorPretendido;
 	}
 

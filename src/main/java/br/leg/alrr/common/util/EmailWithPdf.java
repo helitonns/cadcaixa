@@ -24,7 +24,6 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
@@ -43,7 +42,7 @@ import br.leg.alrr.atual.model.Servidor;
 public class EmailWithPdf {
 	
 	
-	private ByteArrayOutputStream baos;
+	
 	private HttpServletResponse response;
 	private FacesContext context;
 	private String pathLogoALE;
@@ -75,7 +74,7 @@ public class EmailWithPdf {
         int smtpPort = 587; //replace this with a valid port
                  
         String sender = "gdsis@al.rr.leg.br"; //replace this with a valid sender email address
-        String recipient = "rafainfoway@gmail.com"; //replace this with a valid recipient email address
+        String recipient = servidor.getEmail(); //replace this with a valid recipient email address
         String content = "Mensagem"; //this will be the text of the email
         String subject = "Assunto"; //this will be the subject of the email
          
@@ -112,7 +111,7 @@ public class EmailWithPdf {
             DataSource dataSource = new ByteArrayDataSource(bytes, "application/pdf");
             MimeBodyPart pdfBodyPart = new MimeBodyPart();
             pdfBodyPart.setDataHandler(new DataHandler(dataSource));
-            pdfBodyPart.setFileName("test.pdf");
+            pdfBodyPart.setFileName("solicitacao.pdf");
                          
             //construct the mime multi part
             MimeMultipart mimeMultipart = new MimeMultipart();
@@ -126,7 +125,7 @@ public class EmailWithPdf {
             //construct the mime message
             MimeMessage mimeMessage = new MimeMessage(session);
             mimeMessage.setFrom(new InternetAddress("gdsis@al.rr.leg.br"));
-            mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("rafainfoway@gmail.com"));
+            mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(servidor.getEmail()));
             mimeMessage.setSender(iaSender);
             mimeMessage.setSubject(subject);
             mimeMessage.setRecipient(Message.RecipientType.TO, iaRecipient);
@@ -465,6 +464,13 @@ public class EmailWithPdf {
 			document.addAuthor("ALE-RR");
 
 			document.close();
+			
+			//response.reset();
+			//response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/pdf");
+			//response.setContentLength(outputStream.size());
+			response.setHeader("Content-disposition", "inline; filename=solicitacao.pdf");
+			response.getOutputStream().write(((ByteArrayOutputStream) outputStream).toByteArray());
 
     	
 		} catch (DocumentException e) {
