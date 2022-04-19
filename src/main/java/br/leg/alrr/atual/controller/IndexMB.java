@@ -66,8 +66,8 @@ public class IndexMB implements Serializable {
 				// FacesUtils.setBean("servidor", servidor);
 				//gerarPdf = new GeneratorPDF();
 				//gerarPdf.caixaPDF(servidor);
-				emailComPdf = new EmailWithPdf();
-				emailComPdf.email(servidor);
+//				emailComPdf = new EmailWithPdf();
+//				emailComPdf.email(servidor);
 				
 			}
 
