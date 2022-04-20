@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package br.leg.alrr.common.util;
 
@@ -30,28 +30,32 @@ import com.lowagie.text.pdf.PdfWriter;
 import br.leg.alrr.atual.model.Servidor;
 import com.lowagie.text.HeaderFooter;
 import com.lowagie.text.Phrase;
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.regex.Pattern;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Classe responsável pela criação dos arquivos pdf
- * 
+ *
  * @author rafaell
  *
  */
 public class GeneratorPDF {
 
-	private ByteArrayOutputStream baos;
-	private HttpServletResponse response;
-	private FacesContext context;
-	private String pathLogoALE;
-	private String pathLogoGOV;
+    private ByteArrayOutputStream baos;
+    private HttpServletResponse response;
+    private FacesContext context;
+    private String pathLogoALE;
+    private String pathLogoGOV;
 
-	public GeneratorPDF() {
-		this.context = FacesContext.getCurrentInstance();
-		this.response = (HttpServletResponse) context.getExternalContext().getResponse();
+    public GeneratorPDF() {
+        this.context = FacesContext.getCurrentInstance();
+        this.response = (HttpServletResponse) context.getExternalContext().getResponse();
 
-	}
+    }
 
-	public void caixaPDF(Servidor servidor) throws IOException {
+    public void caixaPDF(Servidor servidor) throws IOException {
 
 //    	// criação do objeto documento
         Document document = new Document();
@@ -116,10 +120,10 @@ public class GeneratorPDF {
             Paragraph pTelefone = new Paragraph(servidor.getTelefone(), fonteNormal);
             Paragraph pEmail = new Paragraph(servidor.getEmail(), fonteNormal);
             Paragraph pEstadoCivil = new Paragraph(servidor.getEstadoCivil(), fonteNormal);
-            Paragraph pRenda = new Paragraph("R$: " + servidor.getRendaBrutaFamiliar(), fonteNormal);
+            Paragraph pRenda = new Paragraph(formatarDinheiro(servidor.getRendaBrutaFamiliar()), fonteNormal);
             Paragraph pRespostaPossuiCasa = new Paragraph(servidor.getJaPossuiCasa(), fonteNormal);
             Paragraph pRespostaPossuiFilho = new Paragraph(servidor.getTemFilhos(), fonteNormal);
-            Paragraph pRespostaValorCompra = new Paragraph("R$: " + servidor.getValorPretendido(), fonteNormal);
+            Paragraph pRespostaValorCompra = new Paragraph(formatarDinheiro(servidor.getValorPretendido()), fonteNormal);
             Paragraph pRespostaEntrada = new Paragraph(servidor.getPossuiValorDaEntrada(), fonteNormal);
 
             Paragraph p16 = new Paragraph("*OBS: Favor anexar os seguintes documentos: ", fonteNormal);
@@ -374,6 +378,38 @@ public class GeneratorPDF {
         }
     }
 
+    private String formatarDinheiro(String valor) {
+        final BigDecimal novoValor = unformat(valor);
+        if (novoValor != null) {
+            final Locale loc = new Locale("pt", "BR");
+            NumberFormat nf = NumberFormat.getCurrencyInstance(loc);
+            return nf.format(novoValor);
+        }
+        return "";
+    }
+
+    public static BigDecimal unformat(String valor) {
+        if (StringUtils.isNotBlank(valor)) {
+
+            valor = valor.replaceAll(Pattern.quote("R$"), "");
+            valor = valor.replaceAll(Pattern.quote("."), "");
+            valor = valor.replaceAll(Pattern.quote(" "), "");
+            valor = valor.replaceAll(",", "");
+            valor = valor.trim();
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < valor.length(); i++) {
+                char ch = valor.charAt(i);
+                if (Character.isDigit(ch)) {
+                    sb.append(ch);
+                }
+            }
+            sb = sb.insert(sb.length() - 2, '.');
+            return new BigDecimal(sb.toString());
+        }
+        return null;
+
+    }
 //    public void solitacaoPDF(Solicitacao solicitacao) throws IOException {
 //    	
 //    	// criação do objeto documento
