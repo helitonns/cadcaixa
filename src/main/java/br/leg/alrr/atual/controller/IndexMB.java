@@ -8,7 +8,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import org.apache.commons.mail.EmailException;
@@ -29,24 +28,23 @@ import br.leg.alrr.common.util.Mensagem;
 @SessionScoped
 public class IndexMB implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	// private boolean possuiValorDaEntrada=null;
-	// private boolean jaPossuiCasa=null;
-	// private boolean temFilhos=null;
-	// private boolean autorizacaoDeUso=null;
+    // private boolean possuiValorDaEntrada=null;
+    // private boolean jaPossuiCasa=null;
+    // private boolean temFilhos=null;
+    // private boolean autorizacaoDeUso=null;
+    private Servidor servidor;
+    private Servidor servidorNaSessao;
+    private Mensagem mensagem;
+    private GeneratorPDF gerarPdf;
+    private EmailWithPdf emailComPdf;
 
-	private Servidor servidor;
-	private Servidor servidorNaSessao;
-	private Mensagem mensagem;
-	private GeneratorPDF gerarPdf;
-	private EmailWithPdf emailComPdf;
+    // ==========================================================================
+    @PostConstruct
+    public void init() {
+        iniciar();
 
-	// ==========================================================================
-	@PostConstruct
-	public void init() {
-		iniciar();
-		
 //		try {
 //			if (FacesUtils.getURL().contains("finalizacao")) {
 //				Servidor s = (Servidor) FacesUtils.getBean("servidor");
@@ -56,109 +54,116 @@ public class IndexMB implements Serializable {
 //			}
 //		} catch (Exception e) {
 //		}
-	}
+    }
 
-	public String finalizarFormulario() {
-		try {
-			// JOGANDO O OBJETO SERVIDOR NA SESSÃO
+    public String finalizarFormulario() {
+        try {
+            // JOGANDO O OBJETO SERVIDOR NA SESSÃO
 
-			if (servidor != null) {
-				// FacesUtils.setBean("servidor", servidor);
-				//gerarPdf = new GeneratorPDF();
-				//gerarPdf.caixaPDF(servidor);
+            if (servidor != null) {
+                 FacesUtils.setBean("servidor", servidor);
+                //gerarPdf = new GeneratorPDF();
+                //gerarPdf.caixaPDF(servidor);
 //				emailComPdf = new EmailWithPdf();
 //				emailComPdf.email(servidor);
-				
-			}
 
-		} catch (Exception e) {
-			// System.out.println("LOG: " + e.getCause().toString());
-			// FacesUtils.addErrorMessageFlashScoped("Houve um erro ao imprimir o
-			// formulário!");
-		}
-		return "finalizacao.xhtml" + "?faces-redirect=true";
-		
-	}
-	
-	public String imprimirFormulario() {
-		try {
-			// JOGANDO O OBJETO SERVIDOR NA SESSÃO
+            }
 
-			
-				//FacesUtils.setBean("servidor", servidor);
-				//System.out.println("teste" + servidor.getNome());
-				gerarPdf = new GeneratorPDF();
-				gerarPdf.caixaPDF(servidor);
-				
-				
-		
+        } catch (Exception e) {
+            // System.out.println("LOG: " + e.getCause().toString());
+            // FacesUtils.addErrorMessageFlashScoped("Houve um erro ao imprimir o
+            // formulário!");
+        }
+        return "finalizacao.xhtml" + "?faces-redirect=true";
 
-		} catch (Exception e) {
-			// System.out.println("LOG: " + e.getCause().toString());
-			// FacesUtils.addErrorMessageFlashScoped("Houve um erro ao imprimir o
-			// formulário!");
-		}
-		return "finalizacao.xhtml" + "?faces-redirect=true";
-		
-	}
-	
-	
-	public String finalizar() {
-		return "finalizacao.xhtml" + "?faces-redirect=true";
-	}
+    }
 
-	public void enviaEmail(Mensagem msg) throws DAOException {
-		try {
-			EmailUtils.enviaEmail(msg);
+    public String imprimirFormulario() {
+        try {
+            // JOGANDO O OBJETO SERVIDOR NA SESSÃO
 
-		} catch (EmailException ex) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Erro! Occoreu um erro ao enviar a mensagem.", "Erro"));
-			Logger.getLogger(IndexMB.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
+            //FacesUtils.setBean("servidor", servidor);
+            //System.out.println("teste" + servidor.getNome());
+            gerarPdf = new GeneratorPDF();
+            gerarPdf.caixaPDF(servidor);
 
-	public String irParaFomulario() {
-		return "form.xhtml" + "?faces-redirect=true";
-	}
+        } catch (Exception e) {
+            // System.out.println("LOG: " + e.getCause().toString());
+            // FacesUtils.addErrorMessageFlashScoped("Houve um erro ao imprimir o
+            // formulário!");
+        }
+        return "finalizacao.xhtml" + "?faces-redirect=true";
 
-	public String cancelar() {
-		try {
-//			Servidor s = (Servidor) FacesUtils.getBean("servidor");
-//			if (s != null) {
-//				FacesUtils.removeBean("servidor");
-//			}
-			servidor = new Servidor();
-		} catch (Exception e) {
-			System.out.println("LOG: " + e.getCause().toString());
-		}
-		return "index.xhtml" + "?faces-redirect=true";
-	}
+    }
 
-	// ==========================================================================
-	private void iniciar() {
-		servidor = new Servidor();
+    public String finalizar() {
+        return "finalizacao.xhtml" + "?faces-redirect=true";
+    }
+
+    public void enviaEmail(Mensagem msg) throws DAOException {
+        try {
+            EmailUtils.enviaEmail(msg);
+
+        } catch (EmailException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Erro! Occoreu um erro ao enviar a mensagem.", "Erro"));
+            Logger.getLogger(IndexMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public String irParaFomulario() {
+        return "form.xhtml" + "?faces-redirect=true";
+    }
+
+    public String cancelar() {
+        try {
+            Servidor s = (Servidor) FacesUtils.getBean("servidor");
+            if (s != null) {
+                FacesUtils.removeBean("servidor");
+            }
+            servidor = new Servidor();
+        } catch (Exception e) {
+            System.out.println("LOG: " + e.getCause().toString());
+        }
+        return "index.xhtml" + "?faces-redirect=true";
+    }
+
+    public boolean temServidorNaSessao(){
+        try {
+            Servidor s = (Servidor) FacesUtils.getBean("servidor");
+            if (s != null) {
+                return true;
+            }
+            servidor = new Servidor();
+        } catch (Exception e) {
+            System.out.println("LOG: " + e.getCause().toString());
+        }
+        return false;
+    }
+    // ==========================================================================
+    private void iniciar() {
+        servidor = new Servidor();
 //        servidor.setJaPossuiCasa(null);
 //        servidor.setPossuiValorDaEntrada(null);
 //        servidor.setTemFilhos(null);
-		mensagem = new Mensagem();
-	}
+        mensagem = new Mensagem();
+    }
 
-	// ==========================================================================
-	public Servidor getServidor() {
-		return servidor;
-	}
+    // ==========================================================================
+    public Servidor getServidor() {
+        return servidor;
+    }
 
-	public Servidor getServidorNaSessao() {
-		return servidorNaSessao;
-	}
+    public Servidor getServidorNaSessao() {
+        return servidorNaSessao;
+    }
 
-	public Mensagem getMensagem() {
-		return mensagem;
-	}
+    public Mensagem getMensagem() {
+        return mensagem;
+    }
 
-	public void setMensagem(Mensagem mensagem) {
-		this.mensagem = mensagem;
-	}
+    public void setMensagem(Mensagem mensagem) {
+        this.mensagem = mensagem;
+    }
 
 }

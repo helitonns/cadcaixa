@@ -1,226 +1,183 @@
-
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:stella="http://stella.caelum.com.br/faces2"
-	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template1.xhtml">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:stella="http://stella.caelum.com.br/faces2"
+                xmlns:p="http://primefaces.org/ui" template="/template1.xhtml">
+
+    <ui:define name="content">
+
+        <h:form id="frm-formulario">
+
+            <p:focus />
+
+            <div class="card card-w-title">
+                <h3>Formulário de Financiamento da Casa Própria</h3>
+                <p:messages closable="true" showIcon="false" />
+                <div class="ui-fluid p-formgrid">
+
+                    <div class="p-grid p-mt-lg-5">
+
+                        <div class="p-field p-col-12 p-md-4">
+                            <p:outputLabel value="Nome completo" for="nome"
+                                           styleClass="field-label" />
+                            <p:inputText id="nome"
+                                         value="#{indexMB.servidor.nome}"
+                                         converter="upper" required="true" />
+                        </div>
+
+                        <div class="p-field p-col-12 p-md-4">
+                            <p:outputLabel value="CPF" for="cpf" styleClass="field-label" />
+                            <p:inputMask id="cpf" mask="999.999.999-99"
+                                         value="#{indexMB.servidor.cpf}" required="true">
+                                <f:validator validatorId="cpfValidator" />
+                            </p:inputMask>
+                        </div>
+
+                        <div class="p-field p-col-12 p-md-4">
+                            <p:outputLabel value="Estado Civil" for="civil"
+                                           styleClass="field-label" />
+                            <p:selectOneMenu id="civil"
+                                             value="#{indexMB.servidor.estadoCivil}"
+                                             required="true" requiredMessage="Campo Obrigatório!">
+                                <f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
+                                <f:selectItem itemLabel="SOLTEIRO" itemValue="SOLTEIRO" />
+                                <f:selectItem itemLabel="UNIÃO ESTÁVEL"
+                                              itemValue="UNIÃO ESTÁVEL" />
+                                <f:selectItem itemLabel="CASADO" itemValue="CASADO" />
+                                <f:selectItem itemLabel="DIVORCIADO" itemValue="DIVORCIADO" />
+                                <f:selectItem itemLabel="VIÚVO" itemValue="VIÚVO" />
+                            </p:selectOneMenu>
+                        </div>
+                    </div>
+
+                    <div class="p-grid p-mt-lg-5">
+                        <div class="p-field p-col-12 p-md-4">
+                            <p:outputLabel value="Data de Nascimento" for="data"
+                                           styleClass="field-label" />
+                            <p:inputMask id="data"
+                                         value="#{indexMB.servidor.dataNascimento}"
+                                         mask="99/99/9999" required="true">
+                                <f:convertDateTime pattern="dd/MM/yyyy" type="localDate" />
+                            </p:inputMask>
+                        </div>
+
+                        <div class="p-field p-col-12 p-md-4">
+                            <p:outputLabel value="Telefone" for="tel"
+                                           styleClass="field-label" />
+                            <p:inputMask id="tel"
+                                         value="#{indexMB.servidor.telefone}"
+                                         mask="(99) 99999-9999" required="true" />
+                        </div>
+
+                        <div class="p-field p-col-12 p-md-4">
+                            <p:outputLabel value="E-mail" for="email"
+                                           styleClass="field-label" />
+                            <p:inputText id="email"
+                                         value="#{indexMB.servidor.email}"
+                                         validatorMessage="O e-mail digitado não está dentro do padrão!">
+                                <f:validateRegex
+                                    pattern="(^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$)|()" />
+                            </p:inputText>
+                        </div>
+                    </div>
+                    <div class="p-grid p-mt-lg-5">
+                        <div class="p-field p-col-12 p-md-4">
+                            <p:outputLabel value="Já possui casa própria?"
+                                           styleClass="field-label" />
+                            <p:selectOneMenu id="idJPC"
+                                             value="#{indexMB.servidor.jaPossuiCasa}"
+                                             required="true"
+                                             requiredMessage="Já possui casa própria?: campo obrigatório.">
+                                <f:selectItem itemLabel="" itemValue="#{null}"
+                                              noSelectionOption="true" />
+                                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                                <f:selectItem itemLabel="Não" itemValue="Não" />
+                            </p:selectOneMenu>
 
 
-	<ui:define name="content">
+                        </div>
+                        <div class="p-field p-col-12 p-md-4">
+                            <p:outputLabel value="Tem filhos?" styleClass="field-label" />
+                            <p:selectOneMenu id="idJPF"
+                                             value="#{indexMB.servidor.temFilhos}"
+                                             required="true"
+                                             requiredMessage="Tem filhos?: campo obrigatório.">
+                                <f:selectItem itemLabel="" itemValue="#{null}"
+                                              noSelectionOption="true" />
+                                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                                <f:selectItem itemLabel="Não" itemValue="Não" />
+                            </p:selectOneMenu>
+                        </div>
 
-		<h:form id="form" style="min-height: 100vh">
-			<p:messages globalOnly="true" closable="true" />
-
-
-
-			<div class="p-grid" style="width: 100% !important;">
-				<div class="p-col-12">
-					<div class="card card-w-title" style="width: 100% !important;">
-
-						<div class="card card-w-title">
-							<div class="p-grid ui-fluid form-group">
-
-								<div class="p-col-12 p-md-4">
-									<p:message for="idNome" showSummary="true" showDetail="false"
-										style="width: 100%" />
-								</div>
-								<div class="p-col-12 p-md-4">
-									<p:message for="idCPF" showSummary="true" showDetail="false"
-										style="width: 100%" />
-								</div>
-								<div class="p-col-12 p-md-4">
-									<p:message for="idEC" showSummary="true" showDetail="false"
-										style="width: 100%" />
-								</div>
-
-								<div class="p-col-12 p-md-4">
-									<span class="ui-float-label"> <p:inputText id="idNome"
-											value="#{indexMB.servidor.nome}" converter="upper"
-											required="true" requiredMessage="Campo obrigatório!" /> <p:outputLabel
-											value="Nome completo: *" />
-									</span>
-								</div>
-
-								<div class="p-col-12 p-md-4">
-									<span class="ui-float-label"> <p:inputMask id="idCPF"
-											mask="999.999.999-99" value="#{indexMB.servidor.cpf}"
-											required="true" requiredMessage="Campo obrigatório!">
-											<!-- <stella:validateCPF /> -->
-										</p:inputMask> <p:outputLabel value="CPF: *" />
-									</span>
-								</div>
-
-								<div class="p-col-12 p-md-4">
-									<span class="ui-float-label"> <p:selectOneMenu id="idEC"
-											value="#{indexMB.servidor.estadoCivil}" required="true"
-											requiredMessage="Campo Obrigatório!">
-											<f:selectItem itemLabel="" itemValue=""
-												noSelectionOption="true" />
-											<f:selectItem itemLabel="SOLTEIRO" itemValue="SOLTEIRO" />
-											<f:selectItem itemLabel="UNIÃO ESTÁVEL"
-												itemValue="UNIÃO ESTÁVEL" />
-											<f:selectItem itemLabel="CASADO" itemValue="CASADO" />
-											<f:selectItem itemLabel="DIVORCIADO" itemValue="DIVORCIADO" />
-											<f:selectItem itemLabel="VIÚVO" itemValue="VIÚVO" />
-										</p:selectOneMenu> <p:outputLabel value="Selecione o estado civil" />
-									</span>
-								</div>
-
-								<div class="p-col-12 p-md-4">
-									<p:message for="idDN" showSummary="true" showDetail="false"
-										style="width: 100%" />
-								</div>
-								<div class="p-col-12 p-md-4">
-									<p:message for="idTelefone" showSummary="true"
-										showDetail="false" style="width: 100%" />
-								</div>
-								<div class="p-col-12 p-md-4">
-									<p:message for="idEmail" showSummary="true" showDetail="false"
-										style="width: 100%" />
-								</div>
-
-								<div class="p-col-12 p-md-4">
-									<span class="ui-float-label"> <p:inputMask id="idDN"
-											value="#{indexMB.servidor.dataNascimento}" mask="99/99/9999"
-											required="true" requiredMessage="Campo obrigatório!">
-											<f:convertDateTime pattern="dd/MM/yyyy" type="localDate" />
-										</p:inputMask> <p:outputLabel value="Data de nascimento:" />
-									</span>
-								</div>
-
-								<div class="p-col-12 p-md-4">
-									<span class="ui-float-label"> <p:inputMask
-											id="idTelefone" value="#{indexMB.servidor.telefone}"
-											mask="(99) 99999-9999" required="true"
-											requiredMessage="Campo obrigatório" /> <p:outputLabel
-											value="Telefone: *" />
-									</span>
-								</div>
-
-								<div class="p-col-12 p-md-4">
-									<span class="ui-float-label"> <p:inputText id="idEmail"
-											value="#{indexMB.servidor.email}"
-											validatorMessage="O e-mail digitado não está dentro do padrão!">
-											<f:validateRegex
-												pattern="(^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$)|()" />
-										</p:inputText> <p:outputLabel
-											value="E-mail: (não deixe espaço em branco no final)" />
-									</span>
-								</div>
-								<div class="p-col-12 p-md-6">
-									<p:message for="idJPC" showSummary="true" showDetail="false"
-										style="width: 100%" />
-								</div>
-								<div class="p-col-12 p-md-6">
-									<p:message for="idJPF" showSummary="true" showDetail="false"
-										style="width: 100%" />
-								</div>
-								<div class="p-col-12 p-md-6">
-									<span class="ui-float-label"> <p:selectOneMenu
-											id="idJPC" value="#{indexMB.servidor.jaPossuiCasa}"
-											required="true" requiredMessage="Campo obrigatório!">
-											<f:selectItem itemLabel="" itemValue="#{null}"
-												noSelectionOption="true" />
-											<f:selectItem itemLabel="SIM" itemValue="Sim" />
-											<f:selectItem itemLabel="NÃO" itemValue="Não" />
-										</p:selectOneMenu> <p:outputLabel value="Já possui casa própria?" />
-									</span>
-								</div>
-								<div class="p-col-12 p-md-6">
-									<span class="ui-float-label"> <p:selectOneMenu
-											id="idJPF" value="#{indexMB.servidor.temFilhos}"
-											required="true" requiredMessage="Campo obrigatório!">
-											<f:selectItem itemLabel="" itemValue="#{null}"
-												noSelectionOption="true" />
-											<f:selectItem itemLabel="SIM" itemValue="Sim" />
-											<f:selectItem itemLabel="NÃO" itemValue="Não" />
-										</p:selectOneMenu> <p:outputLabel value="Tem filhos?" />
-									</span>
-								</div>
-
-								<div class="p-col-12 p-md-4">
-									<p:message for="idRBF" showSummary="true" showDetail="false"
-										style="width: 100%" />
-								</div>
-								<div class="p-col-12 p-md-4">
-									<p:message for="idValorPretendido" showSummary="true"
-										showDetail="false" style="width: 100%" />
-								</div>
-								<div class="p-col-12 p-md-4">
-									<p:message for="idVE" showSummary="true" showDetail="false"
-										style="width: 100%" />
-								</div>
-
-								<div class="p-col-12 p-md-4">
-									<span class="ui-float-label"> <p:inputNumber id="idRBF"
-											value="#{indexMB.servidor.rendaBrutaFamiliar}" symbol="R$ "
-											decimalSeparator="," thousandSeparator="." decimalPlaces="2"
-											required="true" requiredMessage="Campo obrigatório!" /> <p:outputLabel
-											value="Renda bruta familiar (R$):" />
-									</span>
-								</div>
-								<div class="p-col-12 p-md-4">
-									<span class="ui-float-label"> <p:inputNumber
-											id="idValorPretendido"
-											value="#{indexMB.servidor.valorPretendido}" symbol="R$ "
-											decimalSeparator="," thousandSeparator="." decimalPlaces="2"
-											required="true" requiredMessage="Campo obrigatório!" /> <p:outputLabel
-											value="Valor da casa a ser comprada (R$):" />
-									</span>
-								</div>
-								<div class="p-col-12 p-md-4">
-									<span class="ui-float-label"> <p:selectOneMenu id="idVE"
-											value="#{indexMB.servidor.possuiValorDaEntrada}"
-											required="true" requiredMessage="Campo obrigatório!">
-											<f:selectItem itemLabel="" itemValue="#{null}"
-												noSelectionOption="true" />
-											<f:selectItem itemLabel="SIM" itemValue="Sim" />
-											<f:selectItem itemLabel="NÃO" itemValue="Não" />
-										</p:selectOneMenu> <p:outputLabel value="Possui o valor da entrada?" />
-									</span>
-								</div>
+                        <div class="p-field p-col-12 p-md-4">
+                            <p:outputLabel value="Renda bruta familiar (R$):" for="renda"
+                                           styleClass="field-label" />
+                            <p:inputNumber id="renda"
+                                           value="#{indexMB.servidor.rendaBrutaFamiliar}"
+                                           symbol="R$ " decimalSeparator="," thousandSeparator="."
+                                           decimalPlaces="2" required="true" />
+                        </div>
+                    </div>
 
 
-								<div class="p-col-12">
-									<p:message for="idAutorizacao" showSummary="true"
-										showDetail="false" style="width: 100%" />
-								</div>
-								<div class="p-col-12" style="margin-bottom: 32px">
-									<h:panelGrid columns="2">
-										<p:selectBooleanCheckbox
-											itemLabel="Autorizo a Caixa Econômica Federal a coletar, armazenar e compatilhar meus dados pessoais com sua rede parceira, bem como contato telefônico."
-											id="idAutorizacao"
-											value="#{indexMB.servidor.autorizacaoDeUso}"
-											validator="requiredCheckboxValidator"
-											validatorMessage="Campo obrigatório!" />
-									</h:panelGrid>
-								</div>
+                    <div class="p-grid p-mt-lg-5">
+                        <div class="p-field p-col-12 p-md-4">
+                            <p:outputLabel value="Valor da casa a ser comprada (R$):"
+                                           for="idValorPretendido" styleClass="field-label" />
+                            <p:inputNumber id="idValorPretendido"
+                                           value="#{indexMB.servidor.valorPretendido}"
+                                           symbol="R$ " decimalSeparator="," thousandSeparator="."
+                                           decimalPlaces="2" required="true" />
+                        </div>
+
+                        <div class="p-field p-col-12 p-md-4">
+                            <p:outputLabel value="Possui o valor da entrada?" for="idVE"
+                                           styleClass="field-label" />
+                            <p:selectOneMenu id="idVE"
+                                             value="#{indexMB.servidor.possuiValorDaEntrada}"
+                                             required="true"
+                                             requiredMessage="Possui o valor da entrada?: campo obrigatório.">
+                                <f:selectItem itemLabel="" itemValue="#{null}"
+                                              noSelectionOption="true" />
+                                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                                <f:selectItem itemLabel="Não" itemValue="Não" />
+                            </p:selectOneMenu>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-grid p-mt-lg-5">
+                    <div class="p-field p-col-12">
+                        <p:selectBooleanCheckbox
+                            itemLabel="Autorizo a Caixa Econômica Federal a coletar, armazenar e
+                            compatilhar meus dados pessoais com sua rede parceira, bem como
+                            contato telefônico."
+                            id="idAutorizacao"
+                            value="#{indexMB.servidor.autorizacaoDeUso}"
+                            validator="requiredCheckboxValidator"
+                            validatorMessage="Autorizo: campo obrigatório." />
+                    </div>
+                </div>
 
 
-								<div class="p-col-12 p-md-12 p-lg-6" />
-								<div class="p-col-12 p-md-6 p-lg-3">
+                <div class="p-d-flex p-jc-end p-mt-1">
 
-									<p:commandButton value="Finalizar formulário"  ajax="false"
-										action="#{indexMB.finalizarFormulario}"
-										icon="pi pi-fw pi-save"
-										style="width: 100%" />
-								</div>
-								<div class="p-col-12 p-md-6 p-lg-3">
-									<p:commandButton value="Cancelar"
-										actionListener="#{indexMB.cancelar()}" process="@this"
-										style="background-color: #F57F17; width: 100%"
-										icon="pi pi-fw pi-times" />
-								</div>
-
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</h:form>
+                    <div class="p-mr-2">
+                        <p:commandButton value="Gerar PDF" 
+                                         process="@form"
+                                         validateClient="true" 
+                                         update="@form"
+                                         styleClass="ui-button-secondary"
+                                         action="#{indexMB.finalizarFormulario()}"
+                                         icon="pi pi-fw pi-save" 
+                                         ajax="false"/>
+                    </div>
+                    <p:button icon="pi pi-fw pi-times" outcome="index.xhtml" value="Cancelar" />
+                </div>
+            </div>
+        </h:form>
 
 
-	</ui:define>
+    </ui:define>
 </ui:composition>

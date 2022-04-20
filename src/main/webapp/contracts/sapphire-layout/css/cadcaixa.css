@@ -1,0 +1,19 @@
+@charset "ISO-8859-1";
+
+.logo-responsive {
+	width: 96%;
+	max-width: 580px;
+	height: auto;
+}
+
+.field-label {
+	align-items: center;
+	display: flex;
+	font-weight: 500;
+	color: #585858;
+}
+
+.ui-outputlabel .ui-outputlabel-rfi {
+	margin-left: 0.2em !important;
+	color: #e91e34;
+}

@@ -1,62 +1,50 @@
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:stella="http://stella.caelum.com.br/faces2"
-	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template1.xhtml">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:stella="http://stella.caelum.com.br/faces2"
+                xmlns:p="http://primefaces.org/ui" template="/template1.xhtml">
+    <ui:define name="content">
 
+        <h:form id="form">
 
-	<ui:define name="content">
+            <div class="ui-fluid">
+                <div class="p-col-12">
+                    <div class="card card-w-title">						
+                        <div class="p-grid p-mt-4">
+                            <div style="font-size: 18px; letter-spacing: 0; line-height: 1.6; color: #555F61; text-align: justify;">
 
-		<h:form id="form" style="min-height: 100vh">
-			<p:messages globalOnly="true" closable="true" />
+                                <p:messages globalOnly="true" closable="true" />
+                                <p>
+                                    Assine o formulário e entregue-o no <strong>Departamento de Recursos Humanos</strong> da Assembleia Legislativa de Roraima.
+                                </p>
+                            </div>
+                        </div>
 
+                        <p:outputPanel>
+                            <div class="p-d-flex p-jc-center p-mt-6">
+                                <div class="p-col-12 p-sm-5 p-md-4 p-lg-3  ">
+                                    <p:commandButton 
+                                        id="btn1" 
+                                        value="Baixar Formulário" 
+                                        ajax="false"
+                                        styleClass="ui-button-secondary"
+                                        icon="pi pi-print"
+                                        action="#{indexMB.imprimirFormulario()}"
+                                        disabled="#{!indexMB.temServidorNaSessao()}"
+                                        >
+                                    </p:commandButton>
+                                </div>
+                                <div class="p-col-12 p-sm-5 p-md-4 p-lg-3 ">
+                                    <p:commandButton value="INÍCIO" action="#{indexMB.cancelar()}" ajax="false" icon="pi pi-fw pi-pencil"/>
+                                </div>
+                            </div>
+                        </p:outputPanel>
+                    </div>
 
-
-			<div class="p-grid" style="width: 100% !important;">
-				<div class="p-col-12">
-					<div class="card card-w-title" style="width: 100% !important;">
-
-						<div id="introduction"
-							style="margin-left: auto; margin-right: auto; text-align: center; color: #EA2B81; margin-bottom: 20px">
-							<!--                            <p style="font-size: 42px; color: #333f81">PÁGINA FINAL</p>
-                            <p style="font-size: 32px; color: #333f81">Finalização</p>-->
-						</div>
-
-						<div
-							style="margin-left: auto; margin-right: auto; margin-top: 36px; text-align: center; font-size: 24px; color: #386f5a">
-							<p>O formulário foi gerado com sucesso!!!</p>
-							<!--<p>Uma cópia foi enviada para o email:# {indexMB.servidor.email}</p>-->
-						</div>
-
-						<h:panelGroup class="none" style="width: 100%">
-							<!--<div class="card card-w-title" style="margin-top: 40px;">-->
-								<div class="p-grid ui-fluid form-group" style="margin-top: 20px">
-									<div class="p-col-3" />
-									<div class="p-col-12 p-md-6 p-lg-3 ">
-										<p:commandButton value="VOLTAR PARA O INÍCIO"
-											icon="pi pi-fw pi-arrow-left" ajax="false"
-											action="#{indexMB.cancelar()}"
-											style="width: 100%; height: 45px; " />
-										</div>
-										<div class="p-col-12 p-md-6 p-lg-3">
-										<p:commandButton value="Imprimir PDF"
-											onclick="this.form.target = '_blank'"
-											icon="pi pi-fw pi-arrow-left" ajax="false"
-											action="#{indexMB.imprimirFormulario()}"
-											style="width: 100%; height: 45px; " />
-									</div>
-									<div class="p-col-3" />
-								</div>
-							<!--</div>-->
-						</h:panelGroup>
-
-					</div>
-				</div>
-			</div>
-		</h:form>
-
-
-	</ui:define>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
 </ui:composition>

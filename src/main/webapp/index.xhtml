@@ -1,77 +1,58 @@
-
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:stella="http://stella.caelum.com.br/faces2"
-	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template1.xhtml">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:stella="http://stella.caelum.com.br/faces2"
+                xmlns:p="http://primefaces.org/ui" template="/template1.xhtml">
 
 
-	<ui:define name="content">
+    <ui:define name="content">
 
-		<h:form id="form" style="min-height: 100vh">
-			<p:messages globalOnly="true" closable="true" />
+        <h:form id="form">
+            <p:messages globalOnly="true" closable="true" />
 
+            <div class="p-grid">
+                <div class="p-col-12">
+                    <div class="card card-w-title">
 
-
-			<div class="p-grid" style="width: 100% !important;">
-				<div class="p-col-12">
-					<div class="card card-w-title" style="width: 100% !important;">
-
-						<!--                        <div id="introduction" style="margin-left: auto; margin-right: auto; text-align: center; color: #EA2B81; margin-bottom: 20px">
-                                                    <p style="font-size: 42px; color: #386f5a">Formulário de Financiamento da Casa Própria</p>
-                                                    <p style="font-size: 24px; color: #386f5a">
-                                                        A Assembleia Legislativa de Roraima firmou parceria com a Caixa Econômic Federal para concessão de linha de crédito, para financiamento de casa própria para servidores, com subsídios e condições especiais. Os servidores interessados devem preencher, imprimir e assinar o formulário, e entregá-lo à Superitendência Geral desta Casa para providências. O prazo para solicitação encerra em dd/mm/AAAA.
-                                                    </p>
-                                                </div>-->
-						<div id="introduction"
-							style="margin-left: auto; margin-right: auto; color: #EA2B81; margin-bottom: 20px">
-							<h1 style="color: #616161;">Formulário de Financiamento da
-								Casa Própria</h1>
-							<p
-								style="font-size: 24px; letter-spacing: 0; line-height: 1.6; color: #555F61; margin-top: 40px; text-align: justify;">
-								A <strong>Assembleia Legislativa de Roraima</strong> firmou
-								parceria com a <strong>Caixa Econômica Federal</strong> para
-								concessão de linha de crédito, para financiamento de casa
-								própria para servidores, com subsídios e condições especiais. Os
-								servidores interessados devem preencher, imprimir, assinar o
-								formulário e entregá-lo à Superitendência Geral desta Casa para
-								providências.
-							</p>
-							<p
-								style="font-size: 24px; letter-spacing: 0; line-height: 1.6; color: #555F61;">
-								O prazo para solicitação encerra em <strong>dd/mm/AAAA</strong>.
-								Para mais informações, o interessado deve entrar em contato com
-								XXX.
-							</p>
-							<p
-								style="font-size: 16px; letter-spacing: 0; line-height: 1.6; color: #555F61; margin-top: 40px">
-								<strong>Obs.</strong> As informações preenchidas no formulário
-								não serão salvas.
-							</p>
-						</div>
+                        <div id="introduction"
+                             style="margin-left: auto; margin-right: auto; color: #EA2B81; margin-bottom: 20px">
+                            <h1 style="color: #616161;">Formulário de Financiamento da
+                                Casa Própria</h1>
+                            <p
+                                style="font-size: 24px; letter-spacing: 0; line-height: 1.6; color: #555F61; margin-top: 40px; text-align: justify;">
+                                A <strong>Assembleia Legislativa de Roraima</strong> firmou
+                                parceria com a <strong>Caixa Econômica Federal</strong> para
+                                concessão de linha de crédito, para financiamento de casa
+                                própria para servidores, com subsídios e condições especiais. O
+                                servidor interessado deve preencher, imprimir, assinar entregar
+                                o formulário à Superitendência Geral desta Casa para
+                                providências.
+                            </p>
+                            <p
+                                style="font-size: 24px; letter-spacing: 0; line-height: 1.6; color: #555F61;">
+                                O prazo para solicitação encerra em <strong>dd/mm/aaaa</strong>.
+                                Para mais informações, o interessado deve entrar em contato com
+                                XXX.
+                            </p>
+                            <p
+                                style="font-size: 16px; letter-spacing: 0; line-height: 1.6; color: #555F61; margin-top: 40px">
+                                <strong>Obs.</strong> As informações preenchidas no formulário
+                                não serão salvas.
+                            </p>
+                        </div>
 
 
-						<!--<h:panelGroup class="none" style="width: 100%">-->
-						<!--<div class="card card-w-title" style="margin-top: 40px;">-->
-						<div class="p-grid ui-fluid form-group" style="margin-top: 20px">
-							<div class="p-col-12 p-lg-9" />
-							<div class="p-col-12 p-lg-3 ">
-								<p:button value="PREENCHER FORMULÁRIO"
-									icon="pi pi-fw pi-pencil" ajax="false"
-									outcome="form.xhtml"
-									style="width: 100%; height: 45px; " />
-							</div>
-							<div class="p-col-3" />
-						</div>
-						<!--</div>-->
-						<!--</h:panelGroup>-->
+                        <div class="p-grid ui-fluid form-group" style="margin-top: 20px">
+                            <div class="p-col-12 p-lg-9" />
+                            <div class="p-col-12 p-lg-3 ">
+                                <p:button value="PREENCHER FORMULÁRIO" icon="pi pi-fw pi-pencil" outcome="form.xhtml" />
+                            </div>
+                        </div>
 
-					</div>
-				</div>
-			</div>
-		</h:form>
-
-
-	</ui:define>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
 </ui:composition>
