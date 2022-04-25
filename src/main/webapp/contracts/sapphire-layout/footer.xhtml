@@ -1,34 +1,34 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
 
-	<!--<div class="layout-footer" style="height: 50px !important; margin-bottom: 0px !important; padding-bottom: 0px !important; background-color: #457fca;">-->
-	<!-- <div class="layout-footer"
-		style="height: 50px !important; margin-bottom: 0px !important; padding-bottom: 0px !important; background-color: #386f5a;">
-		<h:outputText value="Cadastro Caixa"
-			style="float: left; margin-top: 20px; color: #fff;font-style: italic;font-weight: bolder" />
-		<h:outputText
-			value="Desenvolvido pelo Núcleo de Desenvolvimento de Sistemas da ALRR - 2022"
-			style="float: right; margin-top: 20px; color: #fff;font-style: italic; font-weight: bolder" />
-	</div> -->
+    <!--<div class="layout-footer" style="height: 50px !important; margin-bottom: 0px !important; padding-bottom: 0px !important; background-color: #457fca;">-->
+    <!-- <div class="layout-footer"
+            style="height: 50px !important; margin-bottom: 0px !important; padding-bottom: 0px !important; background-color: #386f5a;">
+            <h:outputText value="Cadastro Caixa"
+                    style="float: left; margin-top: 20px; color: #fff;font-style: italic;font-weight: bolder" />
+            <h:outputText
+                    value="Desenvolvido pelo Núcleo de Desenvolvimento de Sistemas da ALRR - 2022"
+                    style="float: right; margin-top: 20px; color: #fff;font-style: italic; font-weight: bolder" />
+    </div> -->
 
-	<!-- <f:loadBundle basename="sistema" var="sistema"/> -->
+    <!-- <f:loadBundle basename="sistema" var="sistema"/> -->
 
-	<div class="layout-footer">
-		<div class="p-d-flex">
-			<div class="p-col">
-				<p:graphicImage name="logo-footer.png" library="imagens"
-					style="width:100%; heigh:auto;" />
-				<div class="layout-footer-appname">
-					<h:outputText value="#{sistema['sistema.COPYRIGHT']}"
-						escape="false" />
-				</div>
-			</div>
-			<div class="p-col p-col-align-center">
-				<span>Versão: #{sistema['sistema.VERSAO']}</span>
-			</div>
-		</div>
-	</div>
+    <!--<div class="layout-footer">-->
+    <div  style="height: 97px !important; margin-bottom: 0px !important; padding: 0 100px; padding-bottom: 0px !important; background-color: #212121;">
+        <div class="p-d-flex">
+            <div class="p-col">
+                <p:graphicImage name="logo-footer.png" library="imagens"  />
+                <div>
+                    <h:outputText value="#{sistema['sistema.COPYRIGHT']}" escape="false" />
+                </div>
+            </div>
+            <div class="p-col p-col-align-center">
+                <!--<span>Versão: # {sistema['sistema.VERSAO']}</span>-->
+                <h:outputText value="Desenvolvido pelo Núcleo de Desenvolvimento de Sistemas da ALRR - 2022" style="float: right; margin-top: 20px; color: #fff;font-style: italic; font-weight: bolder"/>
+            </div>
+        </div>
+    </div>
 </ui:composition>
